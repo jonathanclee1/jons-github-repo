@@ -1,0 +1,40 @@
+Module CalculateMonthlyBill
+   Declare areaCode as String
+   Declare phoneNumber as String
+   Declare messageCount as Integer
+   Declare baseCharge as Float
+   Declare messageCharge as Float
+   Declare totalBeforeTax as Float
+   Declare totalWithTax as Float
+
+   Set baseCharge = 5.00
+
+   // Input Section
+   Prompt "Enter area code (3 digits):"
+   Get areaCode
+
+   Prompt "Enter phone number (7 digits):"
+   Get phoneNumber
+
+   Prompt "Enter number of text messages sent:"
+   Get messageCount
+
+   // Calculate message charges
+   If messageCount <= 100 then
+      Set messageCharge = 0.00
+   Else if messageCount <= 300 then
+      Set messageCharge = (messageCount - 100) * 0.03
+   Else
+      Set messageCharge = (200 * 0.03) + ((messageCount - 300) * 0.02)
+   EndIf
+
+   Set totalBeforeTax = baseCharge + messageCharge
+   Set totalWithTax = totalBeforeTax * 1.14
+
+   // Output Section
+   Output "Customer Area Code: " + areaCode
+   Output "Customer Phone Number: " + phoneNumber
+   Output "Text Messages Sent: " + messageCount
+   Output "Bill Before Taxes: $" + totalBeforeTax
+   Output "Bill After Taxes (14% added): $" + totalWithTax
+EndModule
